@@ -1,5 +1,25 @@
 import colors from 'vuetify/es5/util/colors'
 
+  // Polyfill for Array.prototype.at method
+  // This polyfill ensures compatibility with environments (like certain Node.js versions)
+  // that do not support the Array.prototype.at method natively. Adding this polyfill at the
+  // very beginning of the configuration ensures that the method is available throughout the
+  // application, including during the server-side rendering and build processes.
+  // This resolves issues with dependencies that may rely on this method.
+  if (!Array.prototype.at) {
+    Object.defineProperty(Array.prototype, 'at', {
+      value: function (index) {
+        index = Math.trunc(index) || 0;
+        if (index < 0) index += this.length;
+        if (index < 0 || index >= this.length) return undefined;
+        return this[index];
+      },
+      writable: true,
+      enumerable: false,
+      configurable: true,
+    });
+  }
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -41,6 +61,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -61,7 +82,13 @@ export default {
       }
     }
   },
-
+  axios: {
+    // サーバーサイドで行うリクエストに使用されるURL
+    // 追記の必要なし
+    // baseURL: process.env.API_URL
+    // クライアントサイドで行うリクエストに使用されるURL(デフォルト: baseURL)
+    // browserBaseURL: <URL>
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
