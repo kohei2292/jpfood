@@ -3,12 +3,16 @@ version: '3.8'
 services:
   db:
     image: postgres:12.3-alpine
+    ports: 
+      - "5432:5432"
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d
     environment:
       TZ: UTC
       PGTZ: UTC
+      POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-    volumes:
-      - ./api/tmp/db:/var/lib/postgresql/data
+      POSTGRES_DB: $POSTGRES_DB
 
   api:
     build:
