@@ -26,8 +26,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - jpfood',
-    title: 'jpfood',
+    titleTemplate: '%s - 일본식 랭킹',
+    title: '일본식 랭킹',
     htmlAttrs: {
       lang: 'en'
     },
