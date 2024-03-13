@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_23_105639) do
+ActiveRecord::Schema.define(version: 2024_03_01_083252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2024_02_23_105639) do
     t.string "link_path2"
     t.string "link_path3"
     t.string "jp_name"
+    t.string "tags"
   end
 
 end
