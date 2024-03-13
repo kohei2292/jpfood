@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :list, only:[:index]
 
       resources :list_today, only:[:index]
+
     end
   end
 end
